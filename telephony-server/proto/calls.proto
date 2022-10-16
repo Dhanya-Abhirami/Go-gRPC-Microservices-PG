@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package calls; 
+
+option go_package = "./";
+
+service Calls{
+    rpc Dial(DialReq) returns (Call) {};
+    rpc Get(GetReq) returns (Call) {};
+}
+
+message DialReq{
+    string to = 1;
+    string from = 2;
+    string callback_url = 3;
+}
+
+message GetReq{
+    string sid = 1;
+}
+
+message Call{
+    string sid = 1;
+    string to = 2;
+    string from = 3;
+    string status = 4;
+    int64 created_at = 5;
+    int64 started_at = 6;
+    int64 duration = 7;
+}
